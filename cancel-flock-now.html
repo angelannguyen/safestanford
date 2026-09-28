@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Stanford: Cancel Flock Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6e3b7;
+    --topbar-bg: #f4da9f;
+    --green: rgb(132, 220, 161);
+    --ink: #000000;
+    --topbar-h: 77px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    background-color: var(--green);
+  }
+
+  body {
+    margin: 0;
+    overscroll-behavior: none;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Serif Ethiopic", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--topbar-bg);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .topbar-logo { justify-self: start; }
+
+  .topbar-logo img {
+    display: block;
+    height: 52px;
+    width: auto;
+  }
+
+  .topbar-center {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sign-link {
+    display: inline-block;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    background-color: var(--green);
+    border-radius: 3px;
+    padding: 6px 12px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .sign-link:hover,
+  .sign-link:focus-visible,
+  .sign-link.is-current {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ---------- Title block ---------- */
+  .title-block {
+    background-color: var(--topbar-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 36px;
+  }
+
+  .title-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .title-logo {
+    height: 80px;
+    width: auto;
+    flex: none;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .letter {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 40px 0 12px;
+    scroll-margin-top: 100px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.35);
+    margin: 0 0 32px;
+  }
+
+  p { margin: 0 0 20px; }
+
+  ol, ul { margin: 0 0 20px; padding-left: 28px; }
+  li { margin-bottom: 10px; }
+
+  a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .signed-label {
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+
+  /* one signature per line, no gaps between them */
+  .signatures {
+    list-style: none;
+    margin: 0 0 32px;
+    padding-left: 0;
+    line-height: 1.5;
+  }
+
+  .signatures li { margin: 0; }
+
+  .coalition { list-style: none; padding-left: 0; }
+  .coalition li { margin-bottom: 8px; }
+
+  /* ---------- Contact block ---------- */
+  .contact {
+    background-color: var(--green);
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 40px;
+  }
+
+  .contact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .contact h2 { margin: 0 0 14px; scroll-margin-top: 100px; }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .contact-row img {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 900px) {
+    .topbar-center { gap: 8px; }
+    .sign-link { font-size: 1rem; padding: 6px 10px; }
+  }
+
+  @media (max-width: 600px) {
+    :root { --topbar-h: 63px; }
+    body { font-size: 17px; }
+    h1 { font-size: 1.35rem; }
+    .title-block { padding: 24px 18px 28px; }
+    .title-inner { flex-direction: column; gap: 12px; text-align: center; }
+    .title-logo { height: 80px; }
+    .letter { padding: 32px 18px 48px; }
+    .contact { padding: 28px 18px 36px; }
+    .topbar { padding: 12px 12px; }
+    .topbar-logo img { height: 38px; }
+    .topbar-center { gap: 6px; }
+    .sign-link { font-size: 0.85rem; padding: 5px 8px; }
+    h2, .contact h2 { scroll-margin-top: 85px; }
+  }
+
+  @media (max-width: 400px) {
+    .topbar-center { gap: 4px; }
+    .sign-link { font-size: 0.72rem; padding: 4px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">
+    <a href="open-letter.html"><img src="safe-stanford-logo.png" alt="Safe Stanford"></a>
+  </div>
+  <div class="topbar-center">
+    <a class="sign-link" href="open-letter.html">What's Next</a>
+    <a class="sign-link" href="news.html">News</a>
+    <a class="sign-link is-current" href="cancel-flock-now.html" aria-current="page">Summer 2026 Open Letter</a>
+    <a class="sign-link" href="To%20our%20community.html">To Our Community</a>
+    <a class="sign-link" href="about.html">About</a>
+  </div>
+</div>
+
+<div class="title-block">
+  <div class="title-inner">
+    <img class="title-logo" src="logo-full.png" alt="Safe Stanford">
+    <h1>Cancel Flock Now</h1>
+  </div>
+</div>
+
+<main class="letter">
+
+  <p>To: President Jonathan Levin and Provost Jenny Martinez</p>
+
+  <p>As faculty, staff, students, campus residents, alumni, and members of the Stanford community, we have deep concerns about the use of Flock AI surveillance cameras on campus. Flock's AI-powered system collects, timestamps, and stores detailed information on every car that enters or exits the Stanford campus. The ACLU says: &ldquo;Imagine that a police officer stood on your street writing detailed notes about you every time you drove or walked by them... Now imagine that there is an army of police officers doing this on every block. This is the surveillance world that Flock is building.&rdquo;</p>
+
+  <p>The collection of this detailed data, held by a private company with documented privacy abuses, creates a mass surveillance state in a time of egregious federal government behavior. This is profoundly unsafe. It is about much more than license plates.</p>
+
+  <p>The documented wide-ranging problems with Flock are significant and serious, including 1) millions of warrentless searches by unauthorized agencies &ndash; including searches by ICE and the federal government and searches of Palo Alto data, 2) routine use of the cameras for surveillance of people not suspected of a crime, 3) no local control of the data, 4) lack of transparency about our "anonymized" data stored indefinitely by Flock, 5) the detailed surveillance of faculty neighborhoods, 6) questionable access to data by Flock employees, 7) the high risk of hacking, 8) the lack of substantive evidence that the cameras reduce crime, 9) liability to the university, and 10) Flock's continuing bad faith behavior. (See here for sources for each of these areas.)</p>
+
+  <p>As the Electronic Frontier Foundation notes, "Flock Safety's surveillance infrastructure is not a neutral public safety tool. It's a system that enables and amplifies racist policing, threatens reproductive rights, and chills constitutionally protected speech."</p>
+
+  <p>These problems have been recognized and acted upon. Fifty-seven communities have removed the cameras, including Mountain View, Los Altos Hills, and Santa Cruz. Moreover, in March 2026, the Santa Clara County Board of Supervisors updated the County Surveillance Use Policy to forbid Flock as an Automated License Plate Reader vendor. Since SUDPS is deputized by the County Sheriff, we are surprised that SUDPS is not following this policy. Does Stanford continuing to use Flock violate both policy and law, and put the policing power of the university in jeopardy? What will this mean for the university's relationship with the County?</p>
+
+  <p>As an institution of higher education, Stanford has a special obligation to protect privacy. Rights to privacy are intimately connected to academic freedom and freedom of speech. Because local policy does not safeguard the data, people, especially international scholars, students, and staff, may well curtail their participation in the life of the university. This chilling effect created by unregulated 24/7 Flock mass surveillance on campus is absolutely anathema to the free and open exchange of ideas and participation in events and assemblies.</p>
+
+  <p>Since its founding, Stanford has committed itself to its motto: "Die Luft Der Frieheit Weht" (The Wind of Freedom Blows). To live up to that commitment to freedom, Stanford must 1) immediately cover the Flock cameras, 2) cancel the contract with Flock and 3) commit to caring for community safety going forward by establishing limits on any new or existing system, including requiring a valid judicial warrant for any data access, prohibition of the use of facial recognition or biometric analysis, and no aggregation of data into a regional, statewide, or national system.</p>
+
+  <p class="signed-label">Signed,</p>
+
+  <ul class="signatures">
+    <li>David Palumbo-Liu, Louise Hewlett Nixon Professor and Professor, Comparative Literature</li>
+    <li>Stephen Monismith, Obayashi Professor in the School of Engineering, Professor SDSS, Oceans Department</li>
+    <li>Natasha Patel, PhD Candidate, Political Science</li>
+    <li>Priya Satia, Faculty and Alum</li>
+    <li>Nina Cole, Staff</li>
+    <li>Elliott White, Jr. Assistant Professor, Earth System Science</li>
+    <li>Lowry Pressly, Assistant Professor, Political Science</li>
+    <li>Jennifer Levine, undergraduate</li>
+    <li>Tim MacKenzie, Chemistry PhD '19, former Genetics Postdoc</li>
+    <li>Rabia Belt, Professor, Law School</li>
+    <li>Julie Parsonnet, George DeForest Barnett Professor of Medicine, Emerita</li>
+    <li>Jessica Riskin, History Department</li>
+    <li>Jayashri Srikantiah, law faculty</li>
+    <li>Sarah Walter, alumni</li>
+    <li>Linda Baker, campus resident</li>
+    <li>Kelda Jamison, staff, campus resident</li>
+    <li>Ron Tyler, Professor of Law</li>
+    <li>Patricia Chang, alumni, former instructor, campus resident</li>
+    <li>Tendayi Achiume, Professor of Law</li>
+    <li>Maggie Weng, postdoc, Earth Systems Science</li>
+    <li>Richard Ford, Professor, law</li>
+    <li>Russell Poldrack, Department of Psychology, Albert Ray Lang Professor and Department Chair</li>
+    <li>Curtis Milhaupt, Law School Faculty</li>
+    <li>Brian Jones, Ph.D. Physics '99</li>
+    <li>Laurence Baker, Professor of Health Policy</li>
+    <li>Janet Alexander, Professor (emerita) of Law</li>
+    <li>Christine Min Wotipka, GSE faculty and alum</li>
+    <li>Lucas Guttentag, Professor, Law School</li>
+    <li>Hakeem Jefferson, Political Science</li>
+    <li>Donna Norton, campus resident/faculty spouse</li>
+    <li>Mark A. Lemley, William H. Neukom Professor, Law School</li>
+    <li>Mary Wilson, Married to Robert B. Wilson, economics laureate 2020</li>
+    <li>Pam Foreman, former postdoctoral and scientific visiting scholar</li>
+    <li>Pierre Laurent, former continuing education student</li>
+    <li>Alexandra Horevitz, campus community member</li>
+    <li>Nan Shaw, Community Member/faculty spouse</li>
+    <li>Emmett Zeifman, Resident, Lecturer</li>
+    <li>Mikael Wolfe, Associate Professor of History</li>
+    <li>Mary Masters, Alumna, campus resident</li>
+    <li>Karin Denson, campus resident, faculty spouse</li>
+    <li>Amado Padilla, Professor, Graduate School of Education</li>
+    <li>Monika Greenleaf, Emerita Faculty</li>
+    <li>Alexander Key, Associate Professor of Comparative Literature</li>
+    <li>Christina Krist, faculty member</li>
+    <li>Anna Bigelow, Religious Studies</li>
+    <li>Brent Sockness, Religious Studies</li>
+    <li>Brian Caliando, Resident, former student and employee</li>
+    <li>Denise Leclair, Widow of Dr F Graham Sommer, Emeritus</li>
+    <li>James Fearon, Professor, Political Science</li>
+    <li>Eric Roberts, Professor of Computer Science, emeritus</li>
+    <li>Rob Reich, Professor</li>
+    <li>Alex Nguyen, undergraduate</li>
+    <li>Steven Goodman, Professor of Epidemiology, Medicine and Health Policy</li>
+    <li>Jude St John, undergraduate</li>
+    <li>Barbara L Voss, Anthropology</li>
+    <li>Regina Pieck, Assistant Professor of Comparative Literature</li>
+    <li>Larry Diamond, Senior Fellow, Hoover and FSI</li>
+    <li>Khalel Cardona, undergraduate</li>
+    <li>Shelley Fisher Fishkin, Joseph S. Atha Professor of Humanities, Professor of English, &amp; (by courtesy) Professor of African &amp; African American Studies</li>
+    <li>Aileen Lê, Undergraduate</li>
+    <li>Raghu Mahajan, Alumni, and campus resident</li>
+    <li>Teal Derrer, Campus resident / faculty spouse</li>
+    <li>Vu Quang, Undergraduate Student</li>
+    <li>Prince Jayhon Gadia, Student / Community Member</li>
+    <li>Kaden Nguyen, Student</li>
+    <li>Cara Silver, community member</li>
+    <li>Mariya Genzel, community member</li>
+    <li>Sharika Thiranagama, Associate Professor of Anthropology</li>
+    <li>Allie Trimm, Undergraduate student</li>
+    <li>Kathleen Levitt, Former Stanford staff, Stanford spouse, Stanford parent</li>
+    <li>Estelle Freedman, Emerita Professor, History</li>
+    <li>Yara Sellin, Spouse and resident</li>
+    <li>Karen Wigen, Professor, History</li>
+    <li>Christopher Costanza, Senior Lecturer, Music</li>
+    <li>Debra Fong, Lecturer, Music Department</li>
+    <li>Rachel Herring, E-IPER</li>
+    <li>Anne Rosenthal, Stanford spouse, Stanford parent of 3</li>
+    <li>Grace Lee, Campus community member</li>
+    <li>Lani Olsen, Campus resident/faculty spouse</li>
+    <li>Josh Gagne, Staff</li>
+    <li>Kabir Tambar, Associate Professor, Anthropology</li>
+    <li>Brian Eaton, community member</li>
+    <li>Artem Arzyn, Student, Worker</li>
+    <li>Jenny Ballutay, Undergraduate Student</li>
+    <li>Gina Kittleson, Graduate Student</li>
+    <li>Poonam Sahoo, Stanford student</li>
+    <li>Josh Sanyal, Student</li>
+    <li>Kiran Khush, Faculty and alum</li>
+    <li>Linda Faste, widow of Rolf Faste, Emeritus professor</li>
+    <li>Mira Valdez, Undergraduate</li>
+    <li>Wen Feng, Former faculty</li>
+    <li>aracelis girmay, Professor of English</li>
+    <li>Meira Levinson, Professor of Education and Courtesy Professor of Political Science</li>
+    <li>Megan Wachspress, Fellow, Law School</li>
+    <li>Megan Formato, Advanced Lecturer</li>
+    <li>Ethan Ellis, Undergraduate student</li>
+    <li>Lu Chen, Neurosurgery</li>
+    <li>Ken Dinwiddie, alumni</li>
+    <li>Kelly A. Harrison, Instructor, School of Engineering and alumni</li>
+    <li>Adrian Daub, J.E. Wallace Sterling Professor in the Humanities</li>
+    <li>Amanda Zerbe, Lecturer in Law</li>
+    <li>Ekaterina Radeva, spouse of faculty</li>
+    <li>Dimitre Hristov, faculty</li>
+    <li>Marci Kwon, Faculty</li>
+    <li>Peter Stansky, Professor Emeritus, History</li>
+    <li>Joel Beinin, History Department</li>
+    <li>Lauren Tompkins, Professor, Physics</li>
+    <li>Amanda Campos, Undergraduate Student</li>
+    <li>Jeanne Tsai, Professor, Psychology</li>
+    <li>Thomas Blom Hansen, Professor of Anthropology</li>
+    <li>Arghavan Salles, Clinical Associate Professor</li>
+    <li>Sharon Minsuk, alum</li>
+    <li>Todd Davies, Academic Research and Program Officer, and Lecturer</li>
+    <li>Eva Jones, Graduate Student</li>
+    <li>Shea A. Hess Webber, HEPL/Physics Dept; Research Staff</li>
+    <li>Cecile Alduy Professor, French and Italian Department, DLCL</li>
+    <li>Laura Stokes, Associate Professor of History</li>
+    <li>Danny Sallis, Alum, research fellow</li>
+    <li>Stefaniya Zozulya, student</li>
+    <li>Mahina Kaomea, alum</li>
+    <li>Bill Montross, Stanford Law School, JD, 1971</li>
+    <li>Alex Koufos, Research Staff</li>
+    <li>Joshua Landy, Professor, Comparative Literature</li>
+    <li>Ibraheem Fakira, BA, 2012</li>
+    <li>George Cattermole, PhD, Alum, Former faculty</li>
+    <li>Kilian Cavalotti, Staff</li>
+    <li>Mark Gardiner, Lecturer, Program in Writing and Rhetoric</li>
+    <li>Pam Fox Rollin, Alum</li>
+    <li>Miriam B Goodman, Mrs. George A Winzer Professor in Cell Biology</li>
+    <li>Emre Onder, Alumnus</li>
+    <li>Usha Iyer, Faculty</li>
+    <li>Yuliya Ilchuk, Faculty</li>
+    <li>Mahad Ahmed, MD / PhD Candidate</li>
+    <li>Stephen Shenker, Faculty</li>
+    <li>Charbel bou khalil, MD student</li>
+    <li>François Lafaix, Alumnus</li>
+    <li>Charlotte Fonrobert, Associate Professor of Religious and Jewish Studies</li>
+    <li>Rose Salseda, Assistant Professor, Department of Art &amp; Art History</li>
+    <li>Paula Moya, English Department</li>
+    <li>Erin Fleck, Graduate student</li>
+    <li>Kassandra Sharp, Staff, Stanford housing resident</li>
+    <li>Alyssa Burgart, School of Medicine</li>
+    <li>Emma Cuddy, PhD Candidate</li>
+    <li>Eirene Chen, GSB Alum</li>
+    <li>Ilenia Battiato, Faculty</li>
+    <li>Diane Friedlaender, Retiree, Associate Director</li>
+    <li>Ivan Raikov, Research engineer</li>
+    <li>Sofia Scekic, Alum</li>
+    <li>Nhatrang Nguyen, Staff, Law School</li>
+    <li>Soonil Higashino, research staff</li>
+    <li>Wesley Allen Williams, School of Medicine, Postdoc Fellow</li>
+    <li>Laura Castillo-Ruiz, Legal Administrative Assistant, Mills Legal Clinic</li>
+    <li>Micah Kelly, Staff</li>
+    <li>Melissa Dinwiddie, community member</li>
+    <li>Jeanette Kalchik, Stanford Libraries</li>
+    <li>Jesper Sorensen, Faculty</li>
+    <li>Shirin Sinnar, Faculty, Stanford Law School</li>
+    <li>Erica Shinohara, Staff</li>
+    <li>Quinn Monette, PhD Student</li>
+    <li>Tanuja, Stanford Staff</li>
+    <li>Mike Rosenthal, Emeritus</li>
+    <li>David Luenberger, Emeritus</li>
+    <li>Paul Chang, FSI</li>
+    <li>Lorene Nelson, Professor, Department of Epidemiology &amp; Population Health</li>
+    <li>Susan Riggs, Faculty spouse</li>
+    <li>Sue Dinwiddie, retired staff</li>
+    <li>Astrid Usong, staff</li>
+    <li>Amanda Devine, Staff</li>
+    <li>Pamela Mendez, Staff</li>
+    <li>Chris Kamrath, Advanced Lecturer, Program in Writing &amp; Rhetoric</li>
+    <li>Dana V, staff</li>
+    <li>Rome Hamner, Staff</li>
+    <li>Alex Threlkeld, Stanford University Libraries</li>
+    <li>Sonam Soni, staff</li>
+    <li>Rebekah M, Staff</li>
+    <li>Sandra Pasco, School of Medicine, Research Staff</li>
+    <li>Eric Miller, Staff Scientist</li>
+    <li>Janet Bueno, Staff</li>
+    <li>John Groschwitz, Staff</li>
+    <li>Lisa Lowy, Staff</li>
+    <li>Kelly K, Staff</li>
+    <li>Emma Shaw Crane, Assistant Professor, Anthropology</li>
+    <li>Emma Dauterman, Assistant Professor, Computer Science</li>
+    <li>Victoria Varlack, PhD Student</li>
+    <li>Ryan Li, Undergraduate</li>
+    <li>Thomas Wasow, Professor of Linguistics &amp; Philosophy, emeritus</li>
+    <li>Camille Walker, Staff</li>
+    <li>Día Gonzalez, Stanford alum</li>
+    <li>Sam Crow, community member</li>
+    <li>Alys George, faculty &amp; alum</li>
+    <li>Megan F., Staff</li>
+    <li>Anne Vosti, Stanford resident, spouse of Medical School Professor, mother, grandmother, SU grads</li>
+    <li>Dominic Wang, Staff</li>
+    <li>Kiran Hamkins, Graduate student</li>
+    <li>Lorin Peritz-Sharp, Community member</li>
+    <li>Lisa A Burns '80, Class of 1980</li>
+    <li>Fletcher Chapin, PhD Candidate, CEE</li>
+    <li>Mayra Chavolla, Alum</li>
+    <li>Benjamin Lundberg Torres Sánchez, Institute for Diversity in the Arts</li>
+    <li>Camila Krause, School of Medicine Staff, Research Staff</li>
+    <li>Susan Wexler, spouse of emeritus faculty</li>
+    <li>Lewis Wexler, M.D., professor emeritus</li>
+    <li>Heidi Lubin, Staff</li>
+    <li>Marcus A, undergraduate</li>
+    <li>Dino Campagna, Stanford Staff, Water Systems</li>
+    <li>Fritz Koehler, Alumni</li>
+    <li>Jay McClelland, Lucie Stern Professor, Department of Psychology</li>
+    <li>Chelsea Bartram, Physics</li>
+    <li>Secoya Contreras, Staff</li>
+    <li>Austin Marshall, community member</li>
+    <li>David Waksberg, community member</li>
+    <li>Leslie Fiedler, Campus Resident, Faculty Spouse</li>
+    <li>A. Karl Kornel, Staff</li>
+    <li>Raymond Levitt, Professor, Emeritus</li>
+    <li>Spyridon Baltsavias, Alum</li>
+    <li>Blaine Garst, Visitor</li>
+    <li>Allana Moore, Undergraduate</li>
+    <li>Jacob Lynn, Undergraduate</li>
+    <li>Jane Manning, Alum</li>
+    <li>Mikey Mendoza, Undergraduate</li>
+    <li>Zulie Malone, Undergraduate</li>
+    <li>Julia Sharapi, Graduate Student</li>
+    <li>Lucas Perry, student</li>
+    <li>Lucy O’Brien, Associate Professor, Department of Molecular &amp; Cellular Physiology</li>
+    <li>Mark Chin, Alum and SCRL</li>
+    <li>Dale Miller, SLAC staff</li>
+    <li>Emily Zurcher-Kraushaar, Staff, Outdoor Education</li>
+    <li>Carrie Levin, Community member</li>
+    <li>Jason Ferrel, Undergraduate</li>
+    <li>Dhananjay Balakrishnan, Graduate Student</li>
+    <li>Emi S, EE PhD candidate</li>
+    <li>Wren Cooperrider, Alumni</li>
+    <li>Shuci Zhang, Undergrad</li>
+    <li>Thalia Anagnis, Alumna, faculty spouse</li>
+    <li>James Harris, Professor Electrical Engineering, Emeritus</li>
+    <li>Michael Tsai, Undergraduate</li>
+    <li>Surya Donath, undergraduate</li>
+    <li>Rachel Bergmann, PhD candidate</li>
+    <li>Adrian Gamarra Lafuente, Stanford Student</li>
+    <li>Steven Ketchpel, PhD ‘98</li>
+    <li>Saniya, undergrad + graduate</li>
+    <li>Mohamed Elhassan, Alumnus</li>
+    <li>Christopher Manning, Professor of Linguistics and Computer Science</li>
+    <li>Susan Macario, Campus resident/faculty spouse</li>
+    <li>Imran Khalid-Khan, SCRL</li>
+    <li>Avi Udash, B.S. &amp; M.S. ‘26</li>
+    <li>Turner Van Slyke, Residential Student Leader, Undergraduate</li>
+    <li>Kathy Fang, PhD</li>
+    <li>Jessica Jordan, Teaching Staff</li>
+    <li>Becca Crosse, Student</li>
+    <li>Grace Wang, Staff</li>
+    <li>Boglarka Huddleston, School of Medicine</li>
+    <li>Curtis, HR Staff</li>
+    <li>Bree T., Staff</li>
+    <li>Zoe Lakkis, Undergraduate</li>
+    <li>Mobina Riazi, Stanford Student</li>
+    <li>Angie Llamas, Staff</li>
+    <li>Dana Heinemann, Staff</li>
+    <li>Tobias Gerstenberg, Assistant Professor, Department of Psychology</li>
+    <li>Thomas Christian Sudhof, Stanford University School of Medicine</li>
+    <li>Béline Falzon, Staff</li>
+    <li>Evan Dowdakin Staff</li>
+    <li>Kenia Blanco Alvarez, Staff</li>
+    <li>Thaomi Michelle Dinh, Asian American Studies</li>
+    <li>Armaan Sharma, Undergraduate Student</li>
+    <li>Jasmine Nevarez, Alumni - 2024</li>
+    <li>Audrey Shafer, retired faculty, Stanford University School of Medicine</li>
+    <li>Charles Hsu, Alumnus (PdD, MBA)</li>
+    <li>Raquel Navarro Calara, Staff, CCSRE</li>
+    <li>Jennifer Miller, JD '97</li>
+    <li>Chijioke Mgbahurike, Stanford Law School, Research Fellow</li>
+    <li>Sam Arias, Stanford Student</li>
+    <li>Irena Yamboliev, PWR Lecturer</li>
+    <li>Jules Jackson, Undergraduate Student</li>
+    <li>Rebecca Richardson, Lecturer</li>
+    <li>katherine wang, student, department of computer science</li>
+    <li>Denise Gill, Department of Music</li>
+    <li>Lisa Ramee, Staff</li>
+    <li>Bissera V. Pentcheva, Art History</li>
+    <li>Nissa Cannon, Teaching Staff</li>
+    <li>Alison McQueen, Department of Political Science</li>
+    <li>Giulia Barbarito, Staff</li>
+    <li>Kitan Lanre-Phillips, Undergraduate Student</li>
+    <li>Rose Bracken, undergraduate</li>
+    <li>Jeffrey Koseff, Prof of Civil and Environmental Engineering, Emeritus</li>
+    <li>Sierra Maciorowski, BA/BS '20, JD/MS '27</li>
+    <li>Sasha Luchyn, Undergraduate student</li>
+    <li>Ayca Alemdaroglu, Research Scholar</li>
+    <li>Karen Jacobson, Alumna, campus resident, faculty spouse</li>
+    <li>Subini Annamma, Associate Professor, Graduate School of Education</li>
+    <li>Pearl Klassen, Student</li>
+    <li>Kath Rothschild, Advanced Lecturer, PWR</li>
+    <li>Cassie Wright, Advanced Lecturer, Program in Writing and Rhetoric</li>
+    <li>Sarah Chang, CEE PhD student</li>
+    <li>Anna Finch, Earth System Science PhD Student</li>
+    <li>David Lenzi, Staff</li>
+    <li>Dan Kubota, Stanford Student, 27th and 28th Undergraduate Senator</li>
+    <li>Omar Solis, Alumna, Ethics and Technology Practitioner Fellow</li>
+    <li>Prerana Jayakumar, former postdoc</li>
+    <li>Katherine Ortiz, McCoy Tech Practitioner Fellow, 2025</li>
+    <li>Noor Amr, Graduate Student</li>
+    <li>Katie Wilson, Graduate Alum</li>
+    <li>Branislav Jakovljevic, Professor</li>
+    <li>Cindy Nelson, Community member</li>
+    <li>Stephen Sano, Professor, Department of Music</li>
+    <li>Nora Barakat, History department</li>
+    <li>Nancy Latham, Alum</li>
+    <li>Sabrina Lin, Research fellow</li>
+    <li>JP Gomes, Former Ethics &amp; Tech Fellow</li>
+    <li>Michael Swenson, Ethics and Technology Practitioner Fellow</li>
+    <li>Tristan Heck, Graduate Worker</li>
+    <li>Lalita du Perron, Associate Director, Center for South Asia</li>
+    <li>Gabrielle Moyer, Advanced Lecturer, Program in Writing and Rhetoric</li>
+    <li>Jonah Willihnganz, Director, Stanford Storytelling Project</li>
+    <li>Peggy Bernardy, alumni</li>
+    <li>Susan Austin, Retired Stanford staff, community member</li>
+    <li>Kate Aspell, Staff</li>
+    <li>Celeste Munoz, Staff</li>
+    <li>Roberta Riedel, Alumna</li>
+    <li>Kern King, Retired Stanford Staff, community member</li>
+    <li>Kathy Giori, MSEE alum, current faculty area campus resident</li>
+    <li>Yusra Hussain, MD, DGIM</li>
+    <li>Deborah M Gordon, Faculty</li>
+    <li>Karen Russell, Professor of English</li>
+    <li>Jacob Roe, Undergraduate</li>
+    <li>John Panzer, Comminity member &amp; course auditor</li>
+    <li>Linda Tran, Alumni</li>
+    <li>Fraser Tan, PhD 2011</li>
+    <li>Anna Toledano, PhD '24</li>
+    <li>James Holland Jones, Professor, Environmental Social Sciences</li>
+    <li>Carina Merrick, alum</li>
+    <li>Vida James, Wallace Stegner Fellow</li>
+    <li>Sef Kloninger, BS '93</li>
+    <li>Latasha Means, School of Medicine</li>
+    <li>Clara Bacmeister, Graduate Student</li>
+    <li>Owen Martin, Physics '28</li>
+    <li>Albert &amp; Barbara Gelpi, emeriti faculty &amp; campus residents</li>
+    <li>Alex Macario, Professor</li>
+    <li>Julia DiCicco, MS Student</li>
+    <li>Kathleen Wheaton, Wallace Stegner Fellow</li>
+    <li>Eujin Park, Assistant Professor, Graduate School of Education</li>
+    <li>Justine Modica, History PhD alumna, 2022</li>
+    <li>Annie Villalta, Graduate Student</li>
+    <li>Lucy Zimmerman, Graduate Student</li>
+    <li>Angel De Dios, Undergraduate &amp; Graduate</li>
+    <li>Ximena Briceño, ILAC</li>
+    <li>Anmol Gupta, PhD Candidate</li>
+    <li>Quinn Parker, Graduate Student, Oceans Department</li>
+    <li>Paula Gaither, PhD Candidate, Classics</li>
+    <li>Ava Acevedo, Undergrad</li>
+    <li>Hannah Trillo, Staff</li>
+    <li>Meghan M. Shea, Postdoctoral Researcher</li>
+    <li>Judson Kuhrman, PhD Candidate, Mathematics</li>
+    <li>Rob Dunbar, W.M. Keck Professor of Earth and Ocean Sciences</li>
+    <li>Jazdil Poupart-Feliciano, PhD student</li>
+    <li>Allie Ćemalović, PhD Candidate, CEE</li>
+    <li>Rosalilia M. Mendoza, Graduate Student</li>
+    <li>Liliana Santos-Deonizio, PhD Student</li>
+    <li>Jack Barkowski, Graduate Student</li>
+    <li>Christopher Burnham-Knight, Postdoctoral Scholar / Doctoral Alumnus</li>
+    <li>Michelle M Early, Research Scientist</li>
+    <li>Isa Merel, Staff</li>
+    <li>Will Johnson, PhD Candidate</li>
+    <li>Jayde Meng, PhD Candidate, Oceans Department</li>
+    <li>David Cade, Researcher</li>
+    <li>Caroline Rice, Graduate Student</li>
+    <li>Titus Parker, MS Candidate, ICME</li>
+    <li>Tenzin Norzin, PhD candidate</li>
+    <li>Elia Sandoval, Staff</li>
+    <li>Daniel Finkel, Fellow</li>
+    <li>Victor Mitnick, BS '80, MS '81, Alum</li>
+    <li>Deka Mohamed, Postdoc, Biology Department</li>
+    <li>Adams Adeosun, Wallace Stegner Fellow</li>
+    <li>Ryan Perkins, Stanford Libraries</li>
+    <li>Sarah Codutom PhD Candidate, English</li>
+    <li>Erin Fieberling, Stanford Transportation Staff</li>
+    <li>Madison Priest, staff</li>
+    <li>Luna Laliberte, Phd Student</li>
+    <li>Bethany Bass, PhD Student</li>
+    <li>Julia Hok, Alumni</li>
+    <li>Estefania Rodriguez Sanchez, PhD Student</li>
+    <li>Sukey Bryan, Faculty spouse/campus resident</li>
+    <li>Jim Brooks, Faculty, alum, and campus resident</li>
+    <li>Tenaya West, Alumni</li>
+    <li>J. Edward Carryer, Mechanical Engineering (Emeritus)</li>
+    <li>Maren Stever, Alum</li>
+    <li>Jocelyn Brody, Alum</li>
+    <li>Kevin C Moore, Advancer Lecturer, PWR, and Coordinator, Notation in Science Communication</li>
+    <li>Isabel Davidoff, PhD Student</li>
+    <li>Liz Price, Part-time Clinician Educator</li>
+    <li>Stephen Stedman, Senior Fellow, FSI</li>
+    <li>Elizabeth Hadly, Professor of Biology and Earth System Scienes, emerita</li>
+    <li>Peggy Phelan, Faculty</li>
+    <li>Roberto ruiz melendez, GSB 27</li>
+    <li>Arin Iverson, Undergraduate Student</li>
+    <li>Will Jepsen, Undergraduate</li>
+    <li>Heidi Ayala, Student</li>
+    <li>Taqwa Surapati, Staff Chaplain Stanford Healthcare</li>
+    <li>Lynne Bernatowicz, alum BA/MS '82</li>
+    <li>Peter Drekmeier, Stanford Open Space Alliance</li>
+    <li>Alexander Basaraba, Graduate student</li>
+    <li>Sabi Chashmawala, WHW PCC II</li>
+    <li>Zuly Mamat, School of Medicine Postdoc</li>
+    <li>Jesse Goldstein, research staff</li>
+    <li>Raven Owens, Stanford Undergraduate Sociology Student</li>
+    <li>Lauren Williams, Student</li>
+    <li>Jackson Murphy, Student</li>
+    <li>Austin Uke, Alum</li>
+    <li>Denzel Cofie, Undergraduate student</li>
+    <li>Jaeden Clark, Undergraduate Student</li>
+    <li>Bolu Aminu, School of Engineering undergraduate</li>
+    <li>Jaylia Harris, Undergraduate</li>
+    <li>Kairon Watkins, Undergraduate</li>
+    <li>A K, PhD student</li>
+    <li>Dirk Pranke, alumni</li>
+    <li>Elaine Treharne, Faculty</li>
+    <li>Josie Amoo, Coterm</li>
+    <li>Madisyn Cunningham, Undergraduate</li>
+    <li>Jamie JudahBram, Undergraduate</li>
+    <li>Dr. Umniya Najaer, Alumni</li>
+    <li>Janine Jacobson, Citizen</li>
+    <li>Dwight Thompson, Undergraduate</li>
+    <li>Tife Awoleye, Undergraduate</li>
+    <li>Brittany Linus, Alumni</li>
+    <li>Kelly Bonilla Guzmán, Undergraduate</li>
+    <li>Sav Evans, Graduate Student, MTL</li>
+    <li>Hamdi Hamid, Undergraduate</li>
+    <li>Dahnia Zarroug, Undergraduate</li>
+    <li>Seyi Osundeko, Graduate Student</li>
+    <li>Dayson Burnette, Undergraduate Student</li>
+    <li>Agam Iheanyi-Igwe, Undergraduate</li>
+    <li>Tafara Vera, Undergraduate Student</li>
+    <li>Olatayo Sobomehin, Undergraduate</li>
+    <li>Jyel Hollingsworth, Undergraduate</li>
+    <li>Minerva Pineda, Undergraduate</li>
+    <li>GP, student</li>
+    <li>Sharmila Ravi, Faculty</li>
+    <li>Rafaela Wolf, Undergraduate Student</li>
+    <li>Anju Griffeth, Undergraduate</li>
+    <li>Dionne Aminata, Grad Student</li>
+    <li>Elizabeth Hidalgo Reese, Faculty</li>
+    <li>Noah Haile, Undergraduate student</li>
+    <li>Omotunde Falade, Undergraduate</li>
+    <li>Ann Vu, Undergrad in Biology</li>
+    <li>Michelle Byers, Undergraduate</li>
+    <li>Eyram Benjamin Nana Kwame Degbey, Undergraduate student</li>
+    <li>Emily Gonzalez, Undergraduate</li>
+    <li>Aminata Konneh, Undergraduate</li>
+    <li>Fadumo Jama, Undergraduate</li>
+    <li>Robert W Gordon, Faculty Law School</li>
+    <li>Nette Worthey, Staff</li>
+    <li>Kelly Morgen, community member &amp; artist</li>
+    <li>Barbara Armentrout, alum</li>
+    <li>Shane Adam, Undergraduate Student</li>
+    <li>Rose M Hernandez, former Palo Alto resident</li>
+    <li>Mica Yang, PhD Candidate</li>
+    <li>Albert Martí i Sabarí, Biology</li>
+    <li>Jonathan Johnson, Undergraduate Student</li>
+    <li>Colleen Cuddy, staff</li>
+    <li>Misbah Naseer, Graduate Student</li>
+    <li>Victoria Tuffour, Undergraduate Student</li>
+    <li>David Sengthay, Chair of the 27th Undergraduate Senate</li>
+    <li>Cynthia Nelson, Community Member</li>
+    <li>Bryan Furlong, Stanford alumni</li>
+    <li>Sanna Ali, PhD ‘23, MA ‘21, BS ‘12</li>
+    <li>Clara Jaeckel, community member</li>
+    <li>Zoe Brickley, student</li>
+    <li>Rafe Mazzeo, Mathematics, Cassius Lamb Kirk Professor</li>
+    <li>Francisco O. Ramirez, Professor Emeritus</li>
+    <li>Claire Kuan, Staff</li>
+    <li>Justim Shin, Postdoc</li>
+    <li>Emanuele Lugli, Associate Professor of Art History</li>
+    <li>Noumou Diallo, Undergraduate student</li>
+    <li>Liyah Ernest, student</li>
+    <li>Devesh Narayanan, PhD Candidate, MS&amp;E</li>
+    <li>Madison Romain, Student</li>
+    <li>Fuad Freiha, Emeritus Professor and Campus Resident</li>
+    <li>Akshay Rao, PhD Candidate</li>
+    <li>Daly Wettermark, PhD candidate</li>
+    <li>Sinan Abi Farraj, PhD Candidate, CEE</li>
+    <li>CVO, PhD Candidate</li>
+    <li>Edward Apraku, PhD Candidate, Environmental Engineering</li>
+    <li>Linda Uyechi, Lecturer</li>
+    <li>Nike bharucha, Res Scientist</li>
+    <li>Alex Welna, Area resident</li>
+    <li>Megan Nissel, staff</li>
+    <li>Talia Trepte, Alum ('19, '22) and Staff</li>
+    <li>Adhithyan Sakthivelu, Alumni</li>
+    <li>Joey Huang, PhD student</li>
+    <li>Jazmine Coke, staff</li>
+    <li>Theo Yang, Graduate Student</li>
+    <li>JJ Lugardo, Graduate Student</li>
+    <li>Sophie D'Souza, PhD Candidate</li>
+    <li>Cecelia Morrow, Graduate Student</li>
+    <li>Maya Adimora, Undergraduate student</li>
+    <li>Osose Ewaleifoh, Student</li>
+    <li>Morgan Kelly, Spouse of Stanford staff</li>
+    <li>Jonathan Pollack, Faculty</li>
+    <li>Luke Calderaro, PhD Candidate</li>
+    <li>Jasmyn Burdsall, PhD candidate</li>
+    <li>Nancy Luenberger, Stanford homeowner</li>
+    <li>Linshi Furgerson, Undergraduate</li>
+    <li>Hywot Ayana, Graduate Student</li>
+    <li>Khoa Trinh, Undergraduate</li>
+    <li>Theodore Ruffins, Graduate Student</li>
+    <li>Damian Muschamp, Undergraduate Student</li>
+    <li>James Douglass, Staff</li>
+    <li>Meléa Emunah, PhD candidate</li>
+    <li>Alexandra Cambra, Staff</li>
+    <li>Tula Kurashige, Undergraduate</li>
+    <li>Carissa Yu, undergraduate</li>
+    <li>Robert Tibshirani, faculty</li>
+    <li>perla molina, PhD candidate</li>
+    <li>Tyler McDaniel, PhD Candidate, Sociology</li>
+    <li>Michael L. Chrzan, Alumni</li>
+    <li>Ebru Hosgur, Student</li>
+    <li>Dasia Allen, Undergraduate</li>
+    <li>Sarah Longstreth, Community Member</li>
+    <li>Joseph Cloward, PhD Candidate, Political Science</li>
+    <li>Winter Dellenbach, Community member</li>
+    <li>Gerry Masteller, alumnus</li>
+    <li>Karen Bennett, MLA ‘15</li>
+    <li>Kip Bastedo, Fellow affiliate</li>
+    <li>Toni Moos, Class of 1992 alum</li>
+    <li>Angela Nguyen, Student, Computer Science</li>
+    <li>Kelly Steele, Family of faculty</li>
+    <li>Jill Kaplan, faculty spouse, campus resident</li>
+    <li>Kevin Moos, Alumnus</li>
+    <li>Brian Good, BS Biological Science, 1978</li>
+    <li>Ali Yaycioglu, faculty</li>
+    <li>Noel Sanborn, Community member and father/father-in-law of 3 PhD alumni</li>
+    <li>Elizabeth Sáenz-Ackermann, Staff</li>
+    <li>Héctor Hoyos, Professor of Iberian and Latin American Cultures</li>
+    <li>Jonathan Rosa, Associate Professor, Graduate School of Education</li>
+    <li>Joy Kim, student</li>
+    <li>William Xu, PhD Student</li>
+    <li>Carlie Ware Horne, Lecturer in Law</li>
+    <li>Katie Xin, Undergraduate</li>
+    <li>Patricia Blessing, Associate Professor, Art History</li>
+    <li>Michele Kwasnick, Neighbor</li>
+    <li>Kate Elsley, Local, campus visitor</li>
+    <li>Jennifer Chacon, Faculty</li>
+    <li>Brenda Zhang</li>
+    <li>Shirley Melen, retired staff</li>
+    <li>Srđan Keča, Associate Professor, Art &amp; Art History</li>
+    <li>Elizabeth Nomura</li>
+    <li>Stephanie Caddell, Graduate Student</li>
+    <li>Alessandra Napoli, PhD Candidate</li>
+    <li>Alberto Diaz-Cayeros, Faculty</li>
+    <li>Michael C. Frank, Benjamin Scott Crocker Professor of Human Biology, Symbolic Systems Program Director</li>
+    <li>Bonnie Krejci, Staff, Symbolic Systems</li>
+    <li>Beatriz Magaloni, Professor, Political Science and Senior Fellow, FSI</li>
+    <li>Annie Atura, Staff</li>
+    <li>Michael Kahan, Program on Urban Studies and Sociology Department</li>
+    <li>Adam Bonica, Professor</li>
+    <li>Katherine A. Preston, Academic staff</li>
+    <li>Jeff Axelrod, Professor, SOM</li>
+    <li>Austin Konig, B.S. Symbolic Systems ('26)</li>
+    <li>Isabella Dula, PhD student</li>
+    <li>Taj Dyson, Graduate Student</li>
+    <li>Margarita Nafpaktitis, Stanford Libraries</li>
+    <li>Michael Cerda-Jara, PhD Candidate, Sociology</li>
+    <li>Vicky Fouka, Associate Professor, Political Science</li>
+    <li>Winifred Hegarty, Alumna</li>
+    <li>Davíd Morales, PhD candidate, Graduate School of Education</li>
+    <li>Vivian Brates, Advanced Lecturer</li>
+    <li>Catherine Titzer, Undergraduate student</li>
+    <li>Kaliyah Montanez-Woods, Undergraduate</li>
+    <li>Michelle Xu, PhD student</li>
+    <li>Eric Martinez, Undergraduate Student</li>
+    <li>Bella Zhou, Undergrad</li>
+    <li>Mei Knutson, Undergrad</li>
+    <li>Natalia Bokhari, Student</li>
+    <li>Dagny Haglund, Undergraduate Student</li>
+    <li>Madeleine Salleo, Undergraduate student</li>
+    <li>Mercy Haub, Undergraduate</li>
+    <li>Raine Xiong, Undergraduate Student</li>
+    <li>Lionel Humphreys, Undergraduate</li>
+    <li>Dina Razi, student</li>
+    <li>Roan Price, Undergraduate Student</li>
+    <li>Nathaniel Wong, Student</li>
+    <li>Lora Vachovska, Alumni</li>
+    <li>Kathy Alberts, Alum</li>
+    <li>Kae Heller, Undergraduate</li>
+    <li>Bren Bartol, Undergraduate</li>
+    <li>Sophia Rubin, Undergraduate</li>
+    <li>Chloe Hannsz, Undergraduate</li>
+    <li>Yeva Allyn, Student</li>
+    <li>Kristin Kueter, Alum</li>
+    <li>Thomas Icard, Professor</li>
+    <li>Cheyenne Poston, Alumni</li>
+    <li>Bazzy Schultz, Undergraduate</li>
+    <li>Abby Copeland, Undergraduate and Coterminal MA student</li>
+    <li>Micky Chahcoi, Student</li>
+    <li>karla aguilar, undergraduate senior</li>
+    <li>Esmeralda Mejia, Student</li>
+    <li>Henry Boeschen, Undergraduate Student</li>
+    <li>Jonathan Lu, Resident Physician</li>
+    <li>Avery Miller, Student</li>
+    <li>Yujina Basnet, Undergraduate</li>
+    <li>Alyxx Ford, Undergraduate</li>
+    <li>Anna Patrick, Undergraduate</li>
+    <li>Keshav Narang, student</li>
+    <li>Caroline Foster, Student</li>
+    <li>Christopher Potts, Professor</li>
+    <li>Josh Sulmeyer-Barley, Undergraduate</li>
+    <li>Bronte McKinnis, Graduate Student</li>
+    <li>Sam Prieto Serrano, Alum</li>
+    <li>Calvin Cheung-Miaw, Alumni, B.A. '03, PhD '21</li>
+    <li>Claire Adida, Senior Fellow, FSI</li>
+    <li>Aiden Fel, Undergraduate</li>
+    <li>Hugh Sheehan, undergraduate</li>
+    <li>Tim Lin, Undergraduate '29</li>
+    <li>Lisa Chen, campus resident, alumna</li>
+    <li>Audrey Gold, campus resident, alum</li>
+    <li>Tom Abel, Professor of Physics</li>
+    <li>Jody Maxmin, Faculty</li>
+    <li>David Lemus, Grad Student DLCL</li>
+    <li>Trinity Rushing, Undergraduate</li>
+    <li>Guglielmo Panelli, PhD student</li>
+    <li>Alex Huang, Ph.D. student</li>
+    <li>Jenny Shen, Campus Resident / Faculty Spouse</li>
+    <li>Madeline Anderson, Department of Sociology</li>
+    <li>Elvis Amaya, undergraduate</li>
+    <li>Marina Luccioni, PhD student</li>
+    <li>Barbara Porro, alumni</li>
+    <li>Suzie Lincoln, Alumni</li>
+    <li>Arjun Ayyappan, Undergraduate</li>
+    <li>Natalia Rodriguez, Undergraduate</li>
+    <li>Andy Lyek, Student</li>
+    <li>Amira Hutcherson, Undergraduate</li>
+    <li>Jhonny Almeida, Undergraduate Student</li>
+    <li>Emma Brunskill, Professor</li>
+    <li>Dean Cureton, Undergraduate</li>
+    <li>Harry Cleaver, Alumnus</li>
+    <li>Brian Kaneda, Community Organizer</li>
+    <li>Stacie Wolny, Staff</li>
+    <li>Hilton Obenzinger, Associate Dir. Chinese RR Workers in NA Project, Emeritus</li>
+    <li>Terry Winograd, Professor Emeritus of Computer Science</li>
+    <li>Derek Knowles, American Studies, '11</li>
+    <li>Ryan Loo, Graduate student</li>
+    <li>Mark Shunney, Staff</li>
+    <li>Marissa Mengheang, Student</li>
+    <li>Claudia Lewis, Undergraduate Student</li>
+    <li>Adeline Lee, Student</li>
+    <li>Bless Romo, Alumni 2022</li>
+    <li>Jordy Mont-Reynaud, Symbolic Systems '04</li>
+    <li>Niyatt Mengis, Staff</li>
+    <li>David Kennedy, Prof. Emeritus</li>
+    <li>Jerry Morrison, community member</li>
+    <li>Ellen Schneider, MD, widow of faculty Jeffrey Willick and I live in the faculty leasehold</li>
+    <li>Olivia Pham, Undergraduate</li>
+    <li>Emma Lundberg, Faculty</li>
+    <li>Aliza Kato, Undergraduate Student</li>
+    <li>Vryan Feliciano, M.S., Graduate School of Education</li>
+    <li>Fuga Takahashi, Undergraduate</li>
+    <li>Kathryn Cua, community member</li>
+    <li>Vinny Anderson, Undergraduate Student</li>
+    <li>Alexia Bravo, Student</li>
+    <li>Meredith Einaudi, campus resident/alumna</li>
+    <li>Adam Tarr, Student</li>
+    <li>Katelyn Kramer, Undergraduate</li>
+    <li>Jess Dominick, Alum</li>
+    <li>Kendall Parks, PhD Candidate</li>
+    <li>Lenny Siegel, Alum</li>
+    <li>Peter Brown, Alumni</li>
+    <li>Rosalind Bresnehan, Alum</li>
+    <li>Marjorie Cohn, Alumna</li>
+    <li>Essence Fuller, Community Member</li>
+    <li>Crystal Munoz, Alumni, C/O '99</li>
+    <li>Mark Weiss, Alum, Biophysics</li>
+    <li>Madison Mantich, Employee- registered nurse</li>
+    <li>Ava Mendoza, Student</li>
+    <li>Randal Melen, Retired Staff</li>
+    <li>Jennifer Freyd, alum</li>
+    <li>Roland Greene, Professor of English and Comparative Literature</li>
+    <li>Emma Blemaster, Undergraduate</li>
+    <li>Antonio López , Graduate Student, Modern Thought and Literature Program '26</li>
+    <li>Michele Elam, Professor, English, DAAS, HAI, VPUE</li>
+    <li>Sasha Johfre, PhD, Alumn</li>
+    <li>Laura Wittman, Associate Professor</li>
+    <li>Mariko Hashimoto, Student</li>
+    <li>Sean Littleton, PhD Candidate in Applied Physics</li>
+    <li>Greta Holmes, Undergraduate</li>
+    <li>William Harrison, Coterm Student</li>
+    <li>Joseph Lipsick, Professor of Pathology, Genetics, and Biology (by courtesy)</li>
+    <li>Jules Gittin, Undergraduate Student</li>
+    <li>Lyn Lee Loth, Alumni</li>
+    <li>Theo Johnson-Freyd, Class of 2007</li>
+    <li>Mali Holmes, Community Member</li>
+    <li>Joy Kumagai, Graduate Student</li>
+    <li>Connor Herson, Coterm Student</li>
+    <li>Diego Medina-Gutierrez, Undergraduate Student, 28th ASSU Undergraduate Senator</li>
+    <li>Mary Lee, Student</li>
+    <li>Hailey Demars, Undergraduate</li>
+    <li>Maddie Lescano, Undergraduate Student</li>
+    <li>Rehman Hassan, Undergraduate</li>
+    <li>Madeleine Jones, Undergraduate</li>
+    <li>Aubrey Merrill, Undergraduate Student</li>
+    <li>Serena Young, Undergrad</li>
+    <li>Coco Hernandez, Undergraduate</li>
+    <li>Alexander Lozano, Undergraduate</li>
+    <li>Emma Muller, Undergrad Student</li>
+    <li>JJ Lank, Undergraduate</li>
+    <li>Leo Roth, Undergraduate</li>
+    <li>Timothy Biglow, Alumni; A.B. 1983, B.S. 1984</li>
+    <li>Nancy Moss, Ph.D.</li>
+    <li>Arden Wiese, Undergraduate</li>
+    <li>Tricia Ward-Dolkas, BA 1980 and MS 1981</li>
+    <li>Jacob Rubenstein, Undergraduate Student</li>
+    <li>Tyler Abernethy, Undergraduate</li>
+    <li>Alan Huang, PhD Student</li>
+    <li>Ana Paulina Quiroz, Stanford Class of '26</li>
+    <li>Nandita Talluri, Undergraduate</li>
+    <li>Melina Solis, Stanford Class of 2022</li>
+    <li>Irene Lawrence, alumna</li>
+    <li>Gail Buschini, Alumna</li>
+    <li>Mandarava Jamyangling-Kawaguchi, Undergraduate Student, Class of '27 Co-President</li>
+    <li>Kaleb Houle-Lawrence, Undergraduate Student</li>
+    <li>Dorothy Fadiman, Alumna Master's Degree</li>
+    <li>Sara Katz, Alumna and retired research associate</li>
+    <li>Brandon Saltzman, Stanford Alumni</li>
+    <li>Abhi Boda, Undergraduate</li>
+    <li>Alexa Tran, Undergraduate student</li>
+    <li>Evelyn Pung, Undergraduate</li>
+    <li>Riley Zwetsloot, Class of 2026</li>
+    <li>Allison Yu, Undergrad, class of '29</li>
+    <li>Sarah Jacob, Graduate Student</li>
+    <li>Ariana Lee, Student</li>
+    <li>Dillan Saltsman, Undergraduate Student, ‘27</li>
+    <li>Sheila Stevens , MS '93, PhD '97 Mechanical Engineering</li>
+    <li>Russell Stevens, MS '93 Mechanical Engineering</li>
+    <li>Anya Nelson, Undergraduate student</li>
+    <li>Arizbel Gomez, Undergraduate</li>
+    <li>Kyler Shu, Stanford Data Science</li>
+    <li>Tara Canady, undergraduate</li>
+    <li>Jill Bicknell, Alumna</li>
+    <li>James Newcomer, PhD, Political Science</li>
+    <li>Nimi Raj, resident, spouse of faculty</li>
+    <li>Lexi Bradley, Staff</li>
+    <li>Minoo Jang, Undergraduate</li>
+    <li>Gabriela Flores, Undergraduate Student</li>
+    <li>Chloe Larach, student</li>
+    <li>Lara Rozanski, Undergrad</li>
+    <li>Maggie Reyes, staff and alumna</li>
+    <li>AS, student</li>
+    <li>Kelly Du, Undergraduate student</li>
+    <li>Kylie Price, Student</li>
+    <li>Damanpreet Singh, Alumni</li>
+    <li>Katherine Miao, Undergraduate student</li>
+    <li>Ethan Vue, Friends with a Stanford student</li>
+    <li>Alexis Jones, Undergraduate</li>
+    <li>Joseph Le, Undergraduate</li>
+    <li>Estefany Mendoza Rodriguez, Student</li>
+    <li>Emily Gonzalez Rodriguez, Undergraduate Student</li>
+    <li>Garrett Khatchaturian, Undergraduate</li>
+    <li>Yarely Duarte, Undergraduate</li>
+    <li>Harley Elias, 11</li>
+    <li>Jenaysha Williams, Undergrad</li>
+    <li>Supriya Patel, Student</li>
+    <li>Amy Larimer, Staff</li>
+    <li>Dylan Vergara, Undergraduate</li>
+    <li>Paola Duran, Undergraduate student</li>
+    <li>Karla Albright, Alumni</li>
+    <li>Stephone Christian, Graduate Student</li>
+    <li>Elijah Anderson, Undergraduate</li>
+    <li>Landon Miller, Student</li>
+    <li>Ryan Miljour, Undergraduate Student</li>
+    <li>Sanaa Chatman, Undergraduate Student</li>
+    <li>Metztli Carbajal, Undergraduate Drudebt</li>
+    <li>Daniela Gomez, Undergraduate student</li>
+    <li>Aiyanna Johns, Alumna '25</li>
+    <li>Carla Andazola Villela, Undergraduate</li>
+    <li>Jesse DeRose, Graduate student</li>
+    <li>Nina Carbuccia, Undergraduate</li>
+    <li>Vivian Shepherd-Mayen, Undergraduate Student</li>
+    <li>Max Yan, Undergrad</li>
+    <li>Julie Zhang, Undergraduate</li>
+    <li>Georgia Walker-Keleher, Student</li>
+    <li>Celeste Noriega, Graduate Student</li>
+    <li>Allison Tsai, Staff</li>
+    <li>Abe Jonathan Selvas Vazquez, Undergraduate Student</li>
+    <li>Maanit Goel, student</li>
+    <li>Intisar Alkhatib, Undergrad Student</li>
+    <li>Jonathan Gifford, alumnus, Stanford volunteer</li>
+    <li>Natalie Lien, Undergraduate Student</li>
+    <li>David W Beach, Professor Emeritus</li>
+    <li>Isabel Michel, Student</li>
+    <li>Karen Contreras Cubas, Undergraduate Student</li>
+    <li>Rita Koltai, SCRL campus resident</li>
+    <li>Annika Nehring, Undergraduate</li>
+    <li>Anisha Pandey, Undergraduate</li>
+    <li>Linda Paulson, Associate Dean and Director, MLA</li>
+    <li>Jorge J. Ramos, Undergraduate</li>
+    <li>Rohan Chowdhury, Graduate Student</li>
+    <li>Julia Alves, Faculty spouse</li>
+    <li>Sophie B., Graduate Student</li>
+    <li>Justin Lee, Student</li>
+    <li>Alix Fisher, Undergraduate and coterm</li>
+    <li>Alejandro Ruizesparza, Alumnus</li>
+    <li>Mena Kuchi, Stanford patient</li>
+    <li>Vivianne Guevara, Social Work</li>
+    <li>Aileen Rubio, Undergraduate student</li>
+    <li>Alexandrea Henry, Graduate student</li>
+    <li>Annika Sirtori, Undergraduate</li>
+    <li>Gigi Knaebel, Undergraduate Student</li>
+    <li>Ramon Saldivar, Faculty</li>
+    <li>Judith Gomez, Undergraduate</li>
+    <li>Hawthorn Bolger Witherspoon, Student, Native Action Coaltion</li>
+    <li>Linda González, alumni</li>
+    <li>Abi Lopez, Graduate student</li>
+    <li>Vivi LaFont, Undergraduate Student</li>
+    <li>Satya Vargas, Undergraduate student</li>
+    <li>Sreela Kodali, PhD Electrical Engineering 2025</li>
+    <li>Carlos Leiva, Undergraduate Student</li>
+    <li>Alpha Hernandez, BS'19 MS'26, Graduate student</li>
+    <li>Aarohi Gupta, Graduate Student</li>
+    <li>Emily Yemington, PhD Student</li>
+    <li>Maïgane Diop, Graduate Student</li>
+    <li>Laura Zhou, Graduate student</li>
+    <li>AbuBakr Sangare, Biology PhD Candidate</li>
+    <li>Emily Chen, PhD candidate</li>
+    <li>Chris Flores, PhD Student</li>
+    <li>Caroline Van, Alumna</li>
+    <li>D Chakraborty, PhD Student</li>
+    <li>Illiana Garcia, Graduate Student</li>
+    <li>Anne Kiely, PhD candidate, Chemistry</li>
+    <li>Francisco Barrera, PhD Candidate in Materials Science and Engineering</li>
+    <li>Max Burns, MechE PhD Student</li>
+    <li>Chaylin Romero, Undergraduate</li>
+    <li>Ness Arikan, Undergraduate</li>
+    <li>Sophia Zhou, Undergraduate</li>
+    <li>David Wilkerson-Lindsey , Biology PhD Student</li>
+    <li>Harper Lowrey, Graduate student</li>
+    <li>Connor Diaz, Ph.D. Student</li>
+    <li>Noah Meyer, PhD Student</li>
+    <li>Dominique Bergmann, Professor of Biology</li>
+    <li>Roberta Ahlquist, Alum</li>
+    <li>Seiji Yokota, PhD student (Dept. of Biology)</li>
+    <li>William Cane, alum</li>
+    <li>Emna Sellami, Graduate student</li>
+    <li>Ruby Hernandez, Graduate</li>
+    <li>Samuel Jett, Graduate student, CS</li>
+    <li>John Michael Pfrommer, Student</li>
+    <li>Maya Patnaik, Undergraduate</li>
+    <li>Kaleb Gjestson, Undergraduate</li>
+    <li>Mahalia, Undergrad</li>
+    <li>Emma Sralla, Undergrad</li>
+    <li>Clara Yi, Grad student</li>
+    <li>Rogers Mathews, Undergraduate Student</li>
+    <li>Abbie Yee, Graduate Student</li>
+    <li>Andrea Miranda, Staff</li>
+    <li>Odysseas Morgan, PhD Student (Chemical and Systems Biology)</li>
+    <li>Sabrina Gerace, Graduate Student</li>
+    <li>Kaylee Chan, Undergraduate</li>
+    <li>Lisa Anne Burns, AB'80</li>
+    <li>Hannah Murphy, Faculty family/ campus resident</li>
+    <li>Elaine Elbizri, Support for Justice in Paletine</li>
+    <li>Meredith Murphy, Campus resident</li>
+    <li>Casey Chen, Undergraduate</li>
+    <li>Noah Hermalin, Lecturer, Symbolic Systems Program</li>
+    <li>Julia Martino, Alumnus</li>
+    <li>Paul Bundy, Alumni</li>
+    <li>Kelvin Nguyen, Undergraduate</li>
+    <li>Cassio Conceicao, Alumnus</li>
+    <li>Arnold Yang, Undergraduate (specifically against surveillance)</li>
+    <li>Hayyah Muller, M.D. graduated 1998</li>
+    <li>Miriam Schulman, Alumna</li>
+    <li>Siena Rojas, Undergraduate</li>
+    <li>Safaa Hussain, Undergraduate student</li>
+    <li>Laurel McClure, Alumna</li>
+    <li>Kristina Vetter, Community member</li>
+    <li>Joanna Mountain, Undergrad alum, grad alum, former faculty</li>
+    <li>Jennifer Hardee, PhD in Genetics</li>
+    <li>Randy Schutt, alumnus</li>
+    <li>Ayush Garg, Undergraduate Student</li>
+    <li>Jack Ryan, Master's Student in CS</li>
+    <li>Douglas Natelson, Graduate alumnus</li>
+    <li>William Tompkins, Physics PhD ‘99</li>
+    <li>Federica Armstrong, Community Member</li>
+    <li>Hayley Dunn, Undergraduate</li>
+    <li>Valerie Vargas, Staff</li>
+    <li>Angelina Ambrosiou, Undergraduate Student</li>
+    <li>Jacob Parker, Undergraduate Student</li>
+    <li>Jadon Urogdy, Undergraduate Student</li>
+    <li>Grace Qian, Undergrad Student</li>
+    <li>Addison Mallott, Undergraduate</li>
+    <li>Alana Gudinas, Graduate Student</li>
+    <li>Pualii Zidek, Undergraduate</li>
+    <li>Jose Vasquez, Undergraduate</li>
+    <li>Halu’u, Undergraduate</li>
+    <li>Malinalli M. Diaz, Undergraduate</li>
+    <li>Gregory Medina - Kenyon, Stanford Undergraduate</li>
+    <li>Dylan Pile, Undergraduate</li>
+    <li>Rebecca Monge, Coterm, Earth Systems</li>
+    <li>Daniel Gonzalez, Freshman</li>
+    <li>Saniya Mahate, student</li>
+    <li>Iliana Archuleta, Community member</li>
+    <li>Avery Kamalu, Stanford Undergraduate</li>
+    <li>Deniz Bingul, PhD student</li>
+    <li>Jason Navarro-Lopez, Undergraduate</li>
+    <li>Fatima Arias-Zarate, Student</li>
+    <li>Samantha Isabelle Dizon, undergraduate</li>
+    <li>Vardaan Shah, Undergraduate</li>
+    <li>Stuti Desai, Undergraduate</li>
+    <li>Isha Arora, PhD student</li>
+    <li>Edwin Campos, Undergraduate</li>
+    <li>Katrina Golob, Stanford student</li>
+    <li>Franklin Lurie, Student</li>
+    <li>Hailey Rochin , coterm Earth Systems</li>
+    <li>Ashley Antonio, Undergraduate</li>
+    <li>Eshaal Bashir, Undergraduate</li>
+    <li>Alvaro Molina, undergraduate</li>
+    <li>Giovanna Jiang, Undergraduate, 2026</li>
+    <li>Nani Gurr, Undergraduate student</li>
+    <li>Kenaj Washington, Coterm, Computer Science</li>
+    <li>Esther tok, Alumni</li>
+    <li>Tyler Huang, Undergraduate</li>
+    <li>Heidy Munoz, Undergraduate</li>
+    <li>Paloma real, Family of student</li>
+    <li>Jen Burney, Professor</li>
+    <li>Sophia Forstmann, PhD Candidate</li>
+    <li>Sam Prausnitz-Weinbaum, Undergraduate</li>
+    <li>Chelsea Salazar, Undergraduate</li>
+    <li>Lauren Reyes, Alumni</li>
+    <li>Shaina Hammerman, Staff</li>
+    <li>Angely Vargas, Undergraduate</li>
+    <li>Emmalyn Leonard, PhD student</li>
+    <li>Kim Fernandez-Winters, Undergraduate</li>
+    <li>Joshua Thompson, Undergrad</li>
+    <li>Naizet Ibal Quezada, Undergraduate</li>
+    <li>Jackson Criswell, Partner of employee</li>
+    <li>Emily Hawkins, Undergraduate student</li>
+    <li>March Delgado, Undergraduate Student</li>
+    <li>Lex Passaris, Alumnus</li>
+    <li>Siena Weisman, Undergraduate Student</li>
+    <li>Olivia Kao, Undergraduate, Class of 2029</li>
+    <li>Kaylyn Noah, Undergrad</li>
+    <li>Emily Liu, Undergraduate</li>
+    <li>Alana Okonkwo, Undergraduate Student</li>
+    <li>Enam Gbewonyo, Graduate student</li>
+    <li>Autumn Burnes, Alumni</li>
+    <li>Ann K.D. Myers, Staff</li>
+    <li>Amelia Overstreet, undergraduate student</li>
+    <li>Amber Leung, Undergraduate</li>
+    <li>Max Käller, resident</li>
+    <li>Noella Kwizera, Student</li>
+    <li>Marsha Palitz-Elliott, Masters in Education, STEP Program, 1973</li>
+    <li>Kennedie Bird Bear, Undergraduate student</li>
+    <li>Kati Tong, Student</li>
+    <li>Alyssa McAdams, Undergrad</li>
+    <li>Esmeralda Oliva, Undergraduate Student</li>
+    <li>Harry Hutson, AM 1972</li>
+    <li>Sebastián Francisco Cantú, Undergraduate and Graduate Student</li>
+    <li>Taz Laursen, Undergraduate student</li>
+    <li>Natasha Charfauros, Senior, Human Biology Department</li>
+    <li>Spencer King, Undergraduate Student</li>
+    <li>Maureen Griffin , I used to work at Stanford Shopping Center while going to high school &amp; college at SJSU.</li>
+    <li>Cindy Sidaris, Community Member</li>
+    <li>Sheri Morrison, Community member</li>
+    <li>Abril Galindo, Undergraduate student</li>
+    <li>Julia Perez-Pacheco, Undergrad</li>
+    <li>Kailiti Singh, alum</li>
+    <li>Allison Morningstar, Graduate Student</li>
+    <li>Susan Slater, alumna, community member</li>
+    <li>Jana Gold, Member, Stanford Medicine Chorus</li>
+    <li>Emma Theisen, PhD Student</li>
+    <li>Amy Jervis, Ph.D. alumna</li>
+    <li>Julian Gottfried, Biology PhD student</li>
+    <li>Sara Matlin, Alumna, BA '95</li>
+    <li>Carol Sie, community member, Spouse</li>
+    <li>Sadie Taylor, Undergraduate</li>
+    <li>Kim Hunter, CCIS</li>
+    <li>Jordan Wilson, Daughter of alumni</li>
+    <li>Pat Lang, grad student</li>
+    <li>Sophie Szew, M.A. Student</li>
+    <li>Alex Turner, Student</li>
+    <li>William Orrach</li>
+    <li>David Walton, Undergraduate Student</li>
+    <li>Brandon Hernandez, Undergraduate</li>
+    <li>Johnny Rodriguez , Undergraduate</li>
+    <li>Sweden Smith, Admin, SOM</li>
+    <li>Kathryn Wu, MD-PhD candidate</li>
+    <li>Qasim Zafar, Student, resident</li>
+    <li>Ashanti Nez, Undergraduate Student, Class of 2026</li>
+    <li>Preeti Srinivasan, Graduate School of Business alumni</li>
+    <li>Jackson Whitt, Undergraduate</li>
+    <li>Majida Thalji, Community member</li>
+    <li>Cailinn Allen, Undergraduate</li>
+    <li>Elaine Moise, staff and grad alum</li>
+    <li>Harvey Alcabes, part-time employee</li>
+    <li>Alice Klein, Attended classes</li>
+    <li>Samantha Nevergall, Undergraduate Student</li>
+    <li>Emma Sun, Coterm Student</li>
+    <li>Maia Peterson, Hoover Institute</li>
+    <li>Nava Haghighi, PhD candidate</li>
+    <li>Trudy Hartman, graduate of residency program</li>
+    <li>Audrey Chang, Graduate Student</li>
+    <li>Jennifer Chien, Postdoc, McCoy Center for Ethics and Society and HAI</li>
+    <li>Sydney Faux, Undergraduate</li>
+    <li>Emma Duncan, Postdoc, McCoy Family Center for Ethics and Society</li>
+    <li>Matt Schlegel, Community Member</li>
+    <li>Ben Hollingshead, Undergraduate</li>
+    <li>James Lu, MS Student</li>
+    <li>Audrey Foster, Undergraduate student</li>
+    <li>Tor Parawell, Community Member</li>
+    <li>Rhea Pandya, Student</li>
+    <li>Dominic Zappia, Ethics in Society Pre-Doctoral Researcher</li>
+    <li>Raghav Samavedam, Undergraduate CS Student</li>
+    <li>Margarita Cordova, Undergraduate Student</li>
+    <li>Angelina Rivas, Undergraduate</li>
+    <li>Moya Mapps, Lecturer in Civic, Liberal, and Global Education</li>
+    <li>Janelle Cheung, Alumni</li>
+    <li>Camille DeJarnett, Alumna and postdoc</li>
+    <li>Rafael Rivera-Lugo, Postdoc</li>
+    <li>Nivetha Ramasamy, Staff</li>
+    <li>Emma Hartung, Alum &amp; Staff</li>
+    <li>Aditesh Kumar, Graduate Student</li>
+    <li>Daniel Webber, Lecturer</li>
+    <li>Charles Santori, PhD '03</li>
+    <li>K. B., Community Member</li>
+    <li>Shiqing (Betty) Yao-Lu, Undergraduate</li>
+    <li>Franklin Liu, Undergraduate</li>
+    <li>Emily Oberleitner, undergraduate</li>
+    <li>Jireh Mendoza, Undergrad</li>
+    <li>Bonnie Peterson, Partner</li>
+    <li>URee Chon, PhD student</li>
+    <li>Lydia Erickson, Assistant Director of Career Education - PhDs &amp; Postdocs</li>
+    <li>Lorin Sharp, Stanford Staff spouse</li>
+    <li>Callum Tresnanm, Alum '23</li>
+    <li>Catherine Blish, Professor</li>
+    <li>Sloan Ginn, Stanford campus residential leaseholder</li>
+    <li>Jamie R, Community Member</li>
+    <li>Catherine Boyle, alumni</li>
+    <li>Mona Li, Staff</li>
+    <li>Brett Furrer, DPS SEP</li>
+    <li>Emma Magee, Graduate student</li>
+    <li>Christy Thompson, CS MS</li>
+    <li>Claudia Phillips, Alumna, PhD Student</li>
+    <li>Porter Winterton, Friend of student</li>
+    <li>Clayton Alenikl, Visitor</li>
+    <li>Nick Ekern, Prospective Student</li>
+    <li>Ben Otter, Undergraduate</li>
+    <li>Polly Diffenbaugh, Alumni, staff, campus resident</li>
+    <li>Sofya Gladysheva, Citizen</li>
+    <li>Jeanine Valadez, EE '81, Block S Award</li>
+    <li>Anna Grzymala-Busse, Faculty</li>
+    <li>Karin Guenther, Alumna</li>
+    <li>Shreya Garg, PhD Student</li>
+    <li>Abeygail Panganiban, Campus Resident</li>
+    <li>Jon Arizti Sanz, postdoctoral fellow</li>
+    <li>Malcolm Carral Abreu, Stanford Undergrad</li>
+    <li>Peter Mugemancuro, Alumnus, staff member</li>
+    <li>Robin Schlegel</li>
+    <li>Julianne Hansen, patient</li>
+    <li>Chad Serrao, PhD Candidate</li>
+    <li>Casey Cameron, Neighbor</li>
+    <li>Lawrence Garwin, Alum</li>
+    <li>Tyler Jansen, Stanford Law School Student</li>
+    <li>Eve Sutton, Education &amp; Nanotecnology</li>
+    <li>Shaeril McBrown</li>
+    <li>Alex Kline, Class of ‘80, 2024 Governor’s award</li>
+    <li>David Yoffie, Alum</li>
+    <li>Richard Coreno, community</li>
+    <li>Helen Guerrant Toy, alumna</li>
+    <li>Bonnie Gorsic, Alumna</li>
+    <li>Antonio Buehler, MBA 2006</li>
+    <li>Patrick Diehl, former teacher (summer 1974)</li>
+    <li>Rita Giles, Law School alum, 1977</li>
+    <li>Cody Goin</li>
+    <li>Jill Shallenberger, Alum</li>
+    <li>Linda Morgan, Student Supporter</li>
+    <li>Yehudit Lieberman,, PhD 1970</li>
+    <li>Meredith Pelrine, Alum</li>
+    <li>Paul Chapman, Alum</li>
+    <li>Aaron E Cohen, Alumni</li>
+    <li>Martha Collins, English, '62</li>
+    <li>Brian Knutson, Professor (Psychology and Neuroscience) and graduate alumnus</li>
+    <li>Robert A. Blecker, PhD in Economics, 1987</li>
+    <li>Lydia Poon, BA 2002</li>
+    <li>Luci Ungar</li>
+    <li>AJ cho</li>
+    <li>Lawrence Litvak, Alumni</li>
+    <li>Stephen Rosenblum, Community member</li>
+    <li>Peter Pesic, PhD 1975</li>
+    <li>Sharon L Richmond, GSB Alumna</li>
+    <li>Rita Raftery, Fan</li>
+    <li>Susan Green, Human Bio, 1978</li>
+    <li>Tom Brown, Educator</li>
+    <li>Kate Skolnick, alum</li>
+    <li>Randi Cartmill, alum</li>
+    <li>Christopher Scott, Ally</li>
+    <li>Jennifer Presley, Alum Ph.D 1981</li>
+    <li>Marly LeSene, Staff</li>
+    <li>Lori Alicie</li>
+    <li>Martha Watson, Alumna</li>
+    <li>Erin Moilanen</li>
+    <li>June Cooperman, BS, 1978</li>
+    <li>Robert Knott, Alum</li>
+    <li>Dr. Carole Leeadem, Research scientist (retired)</li>
+    <li>Daniel Gomez, Community Member</li>
+    <li>Cynthia Alden, BS 1988, MS 1990</li>
+    <li>Seth Foldy, Class of 1977</li>
+    <li>Michael Kieschnick, B.S./B.A, former lecturer, Urban Studies.</li>
+    <li>Tiffany Neal, HumBio '02</li>
+    <li>Jennifer King, Research Fellow</li>
+    <li>Rawan Alrayah, Student</li>
+    <li>Leeann Johnson Berry, Undergrad</li>
+    <li>David Offen, BS 1972, MS 1973</li>
+    <li>Gail Sredanovic, MA "65</li>
+    <li>Lizbeth Zambrano-Sanchez, Stanford alum</li>
+    <li>John Oda, Patient</li>
+    <li>Kiran Pandeya Hahn, BA 1996</li>
+    <li>Vahid Vatannia, Resident</li>
+    <li>May Han, Faculty</li>
+    <li>Bella Shapero, Community member</li>
+    <li>Trager Simpson, Rising freshman</li>
+    <li>Aaron Thompson, Consultant</li>
+    <li>James McDonald, Community member</li>
+    <li>Katherine C Glover, Staff</li>
+    <li>Steve Sears, Staff</li>
+  </ul>
+
+  <hr>
+
+  <p>This letter is endorsed by:</p>
+
+  <ul class="coalition">
+    <li>- ACLU Stanford University Chapter</li>
+    <li>- American Association of University Professors, Stanford</li>
+    <li>- Stanford Tech for Liberation</li>
+    <li>- Cardinal Courage</li>
+    <li>- Stanford Derechos</li>
+    <li>- Stanford Public Interest Tech Lab</li>
+    <li>- Stanford Critical AI Group</li>
+    <li>- Stanford Students for Workers Rights</li>
+    <li>- Stanford Decarceration Collective</li>
+    <li>- Stanford Students for Justice in Palestine</li>
+    <li>- Stanford Education &amp; Democracy United</li>
+  </ul>
+
+</main>
+
+<section class="contact">
+  <div class="contact-inner">
+    <h2 id="contact">Contact</h2>
+    <div class="contact-row">
+      <img src="mailing-list.svg" alt="Mailing list">
+      <span>To join our mailing list, fill out <a href="https://forms.gle/7SjBy72dYMhDufd66" target="_blank" rel="noopener">this form</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="email-logo.svg" alt="Email">
+      <span>To join the coalition as an organization, contact us at <a href="mailto:safestanford@gmail.com">safestanford@gmail.com</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="insta-logo.svg" alt="Instagram">
+      <a href="https://www.instagram.com/safestanford" target="_blank" rel="noopener">@safestanford</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

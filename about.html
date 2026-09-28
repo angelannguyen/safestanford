@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Stanford: About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6e3b7;
+    --topbar-bg: #f4da9f;
+    --green: rgb(132, 220, 161);
+    --ink: #000000;
+    --topbar-h: 77px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    background-color: var(--green);
+  }
+
+  body {
+    margin: 0;
+    overscroll-behavior: none;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Serif Ethiopic", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--topbar-bg);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .topbar-logo { justify-self: start; }
+
+  .topbar-logo img {
+    display: block;
+    height: 52px;
+    width: auto;
+  }
+
+  .topbar-center {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sign-link {
+    display: inline-block;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    background-color: var(--green);
+    border-radius: 3px;
+    padding: 6px 12px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .sign-link:hover,
+  .sign-link:focus-visible,
+  .sign-link.is-current {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ---------- Title block ---------- */
+  .title-block {
+    background-color: var(--topbar-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 36px;
+  }
+
+  .title-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .title-logo {
+    height: 80px;
+    width: auto;
+    flex: none;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .letter {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 40px 0 12px;
+    scroll-margin-top: 100px;
+  }
+
+  p { margin: 0 0 20px; }
+
+  ol, ul { margin: 0 0 20px; padding-left: 28px; }
+  li { margin-bottom: 10px; }
+
+  a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .coalition { list-style: none; padding-left: 0; }
+  .coalition li { margin-bottom: 8px; }
+
+  /* ---------- Contact block ---------- */
+  .contact {
+    background-color: var(--green);
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 40px;
+  }
+
+  .contact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .contact h2 { margin: 0 0 14px; scroll-margin-top: 100px; }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .contact-row img {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 900px) {
+    .topbar-center { gap: 8px; }
+    .sign-link { font-size: 1rem; padding: 6px 10px; }
+  }
+
+  @media (max-width: 600px) {
+    :root { --topbar-h: 63px; }
+    body { font-size: 17px; }
+    h1 { font-size: 1.35rem; }
+    .title-block { padding: 24px 18px 28px; }
+    .title-inner { flex-direction: column; gap: 12px; text-align: center; }
+    .title-logo { height: 80px; }
+    .letter { padding: 32px 18px 48px; }
+    .contact { padding: 28px 18px 36px; }
+    .topbar { padding: 12px 12px; }
+    .topbar-logo img { height: 38px; }
+    .topbar-center { gap: 6px; }
+    .sign-link { font-size: 0.85rem; padding: 5px 8px; }
+    h2, .contact h2 { scroll-margin-top: 85px; }
+  }
+
+  @media (max-width: 400px) {
+    .topbar-center { gap: 4px; }
+    .sign-link { font-size: 0.72rem; padding: 4px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">
+    <a href="open-letter.html"><img src="safe-stanford-logo.png" alt="Safe Stanford"></a>
+  </div>
+  <div class="topbar-center">
+    <a class="sign-link" href="open-letter.html">What's Next</a>
+    <a class="sign-link" href="news.html">News</a>
+    <a class="sign-link" href="cancel-flock-now.html">Summer 2026 Open Letter</a>
+    <a class="sign-link" href="To%20our%20community.html">To Our Community</a>
+    <a class="sign-link is-current" href="about.html" aria-current="page">About</a>
+  </div>
+</div>
+
+<div class="title-block">
+  <div class="title-inner">
+    <img class="title-logo" src="logo-full.png" alt="Safe Stanford">
+    <h1>About Us</h1>
+  </div>
+</div>
+
+<main class="letter">
+
+  <p>We are a coalition of students, faculty, staff, alumni, and campus residents opposed to mass surveillance at Stanford. We believe that automated license plate readers, facial recognition, and similar tracking technologies erode the trust, privacy, and academic freedom that a university community depends on. Mass surveillance chills speech, disproportionately targets marginalized students and activists, and treats every member of our community as a suspect.</p>
+
+  <p>Coalition Members:</p>
+
+  <ul class="coalition">
+    <li>- ACLU Stanford University Chapter</li>
+    <li>- American Association of University Professors, Stanford</li>
+    <li>- Stanford Tech for Liberation</li>
+    <li>- Cardinal Courage</li>
+    <li>- Stanford Derechos</li>
+    <li>- Stanford Public Interest Technology Lab</li>
+    <li>- Stanford Critical AI Group</li>
+    <li>- Stanford Students for Workers Rights</li>
+    <li>- Stanford Decarceration Collective</li>
+    <li>- Stanford Students for Justice in Palestine</li>
+    <li>- Stanford Education &amp; Democracy United</li>
+    <li>- Indivisible Palo Alto Plus</li>
+  </ul>
+
+</main>
+
+<section class="contact">
+  <div class="contact-inner">
+    <h2 id="contact">Contact</h2>
+    <div class="contact-row">
+      <img src="mailing-list.svg" alt="Mailing list">
+      <span>To join our mailing list, fill out <a href="https://forms.gle/7SjBy72dYMhDufd66" target="_blank" rel="noopener">this form</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="email-logo.svg" alt="Email">
+      <span>To join the coalition as an organization, contact us at <a href="mailto:safestanford@gmail.com">safestanford@gmail.com</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="insta-logo.svg" alt="Instagram">
+      <a href="https://www.instagram.com/safestanford" target="_blank" rel="noopener">@safestanford</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

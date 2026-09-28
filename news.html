@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Stanford: News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6e3b7;
+    --topbar-bg: #f4da9f;
+    --green: rgb(132, 220, 161);
+    --ink: #000000;
+    --topbar-h: 77px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    background-color: var(--green);
+  }
+
+  body {
+    margin: 0;
+    overscroll-behavior: none;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Serif Ethiopic", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--topbar-bg);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .topbar-logo { justify-self: start; }
+
+  .topbar-logo img {
+    display: block;
+    height: 52px;
+    width: auto;
+  }
+
+  .topbar-center {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sign-link {
+    display: inline-block;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    background-color: var(--green);
+    border-radius: 3px;
+    padding: 6px 12px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .sign-link:hover,
+  .sign-link:focus-visible,
+  .sign-link.is-current {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ---------- Title block ---------- */
+  .title-block {
+    background-color: var(--topbar-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 36px;
+  }
+
+  .title-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .title-logo {
+    height: 80px;
+    width: auto;
+    flex: none;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .letter {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 40px 0 12px;
+    scroll-margin-top: 100px;
+  }
+
+  .letter > h2:first-child { margin-top: 0; }
+
+  p { margin: 0 0 20px; }
+
+  ol, ul { margin: 0 0 20px; padding-left: 28px; }
+  li { margin-bottom: 10px; }
+
+  a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .news-list { list-style: none; padding-left: 0; }
+  .news-list li { margin-bottom: 16px; }
+
+  /* ---------- Contact block ---------- */
+  .contact {
+    background-color: var(--green);
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 32px 24px 40px;
+  }
+
+  .contact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .contact h2 { margin: 0 0 14px; scroll-margin-top: 100px; }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .contact-row img {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    margin-top: 3px;
+  }
+
+  @media (max-width: 900px) {
+    .topbar-center { gap: 8px; }
+    .sign-link { font-size: 1rem; padding: 6px 10px; }
+  }
+
+  @media (max-width: 600px) {
+    :root { --topbar-h: 63px; }
+    body { font-size: 17px; }
+    h1 { font-size: 1.35rem; }
+    .title-block { padding: 24px 18px 28px; }
+    .title-inner { flex-direction: column; gap: 12px; text-align: center; }
+    .title-logo { height: 80px; }
+    .letter { padding: 32px 18px 48px; }
+    .contact { padding: 28px 18px 36px; }
+    .topbar { padding: 12px 12px; }
+    .topbar-logo img { height: 38px; }
+    .topbar-center { gap: 6px; }
+    .sign-link { font-size: 0.85rem; padding: 5px 8px; }
+    h2, .contact h2 { scroll-margin-top: 85px; }
+  }
+
+  @media (max-width: 400px) {
+    .topbar-center { gap: 4px; }
+    .sign-link { font-size: 0.72rem; padding: 4px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">ß
+  <div class="topbar-logo">
+    <a href="open-letter.html"><img src="safe-stanford-logo.png" alt="Safe Stanford"></a>
+  </div>
+  <div class="topbar-center">
+    <a class="sign-link" href="open-letter.html">What's Next</a>
+    <a class="sign-link is-current" href="news.html" aria-current="page">News</a>
+    <a class="sign-link" href="cancel-flock-now.html">Summer 2026 Open Letter</a>
+    <a class="sign-link" href="To%20our%20community.html">To Our Community</a>
+    <a class="sign-link" href="about.html">About</a>
+  </div>
+</div>
+
+<div class="title-block">
+  <div class="title-inner">
+    <img class="title-logo" src="logo-full.png" alt="Safe Stanford">
+    <h1>News</h1>
+  </div>
+</div>
+
+<main class="letter">
+
+  <h2>Flock Safety</h2>
+
+  <p>The Flock cancellation was covered in many news outlets, including...</p>
+
+  <ul class="news-list">
+    <li><a href="https://www.sfgate.com/news/bayarea/article/stanford-university-stops-using-flock-cameras-22379123.php" target="_blank" rel="noopener">Stanford ditches Flock cameras following student backlash</a> | SF Gate</li>
+    <li><a href="https://stanforddaily.com/2026/08/09/stanford-ends-flock-contract/" target="_blank" rel="noopener">Stanford ends contract with Flock cameras, switches to Genetec</a> | Stanford Daily</li>
+    <li><a href="https://www.kqed.org/news/12094101/stanford-cuts-ties-with-flock-safety-shifts-to-new-surveillance-vendor" target="_blank" rel="noopener">Stanford Cuts Ties With Flock Safety, Shifts to New Surveillance Vendor</a> | KQED</li>
+    <li><a href="https://www.paloaltoonline.com/technology/2026/08/04/stanford-drops-flock-cameras-amid-national-backlash/" target="_blank" rel="noopener">Stanford drops Flock cameras amid national backlash</a> | Palo Alto Online</li>
+    <li><a href="https://padailypost.com/2026/08/04/stanford-dumps-flock-but-will-keep-using-license-plate-reading-cameras/" target="_blank" rel="noopener">Stanford dumps Flock but will keep using license-plate reading cameras</a> | Palo Alto Daily Post</li>
+    <li><a href="https://www.msn.com/en-us/news/technology/stanford-replaces-flock-cameras-as-it-seeks-tighter-control-over-vehicle-data/ar-AA29X07E" target="_blank" rel="noopener">Stanford replaces Flock cameras as it seeks tighter control over vehicle data</a> | MSN</li>
+    <li><a href="https://www.mercurynews.com/2026/08/08/police-stanford-flock-camera-school-safety-crime-privacy-internet-ice/" target="_blank" rel="noopener">Stanford ditches Flock cameras, hires new license plate reader firm</a> | Mercury News</li>
+  </ul>
+
+</main>
+
+<section class="contact">
+  <div class="contact-inner">
+    <h2 id="contact">Contact</h2>
+    <div class="contact-row">
+      <img src="mailing-list.svg" alt="Mailing list">
+      <span>To join our mailing list, fill out <a href="https://forms.gle/7SjBy72dYMhDufd66" target="_blank" rel="noopener">this form</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="email-logo.svg" alt="Email">
+      <span>To join the coalition as an organization, contact us at <a href="mailto:safestanford@gmail.com">safestanford@gmail.com</a>.</span>
+    </div>
+    <div class="contact-row">
+      <img src="insta-logo.svg" alt="Instagram">
+      <a href="https://www.instagram.com/safestanford" target="_blank" rel="noopener">@safestanford</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
